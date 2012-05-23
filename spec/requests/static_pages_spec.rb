@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe "Static pages" do
+  let(:page_title_base) { "SndStream" }
 
   describe "Home page" do
 
@@ -11,7 +12,7 @@ describe "Static pages" do
     
     it "should have the right title" do
       visit '/static_pages/home'
-      page.should have_selector('title', :text => "SndStream | Home")
+      page.should have_selector('title', :text => "#{page_title_base} | Home")
     end
   end
   
@@ -24,7 +25,7 @@ describe "Static pages" do
     
     it "should have the right title" do
       visit '/static_pages/help'
-      page.should have_selector('title', :text => "SndStream | Help")
+      page.should have_selector('title', :text => "#{page_title_base} | Help")
     end
   end
   
@@ -37,7 +38,7 @@ describe "Static pages" do
     
     it "should have the right title" do
       visit '/static_pages/about'
-      page.should have_selector('title', :text => "SndStream | About")
+      page.should have_selector('title', :text => "#{page_title_base} | About")
     end
   end
 end
