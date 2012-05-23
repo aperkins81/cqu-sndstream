@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Sndstream::Application.config.secret_token = '0bf0bb15743bea99e5ae1fcbcc79507083c7b00b6d5884ab593688de38dd51936def56faee8973fda2e482bd6028d966d37433f15725de588a3a07a25595ec37'
+Sndstream::Application.config.secret_token = 'b18f5082ae5ae33dcb6ef391edff5f18b3880bbaf0576582ebe72278840bddb349bd20db0766d2f49e1aa852c1f1ce95fbc33148cc26e11b40a44d46f6aafd48'
