@@ -11,7 +11,7 @@ describe "Static pages" do
   
   describe "Home page" do
     before { visit root_path }
-    let(:heading) { 'SndStream' }
+    let(:heading) { "#{page_title_base}" }
     let(:page_title) { '' }
     
     it_should_behave_like "all static pages"
@@ -38,6 +38,13 @@ describe "Static pages" do
     let(:page_title) { 'Contact' }
     it_should_behave_like "all static pages"
   end
+#  
+#  describe "Sign Up page"
+#    before { visit signup_path }
+#    let(:heading) { 'Sign Up'}
+#    let(:page_title) { 'Sign Up'}
+#    #it_should_behave_like "all static pages"
+#  end
   
   it "should have the right links on the layout " do
     visit root_path
@@ -48,7 +55,7 @@ describe "Static pages" do
     click_link "Contact"
     page.should have_selector 'title', text: full_title('Contact')
     click_link "Home"
-    click_link "Sign up"
+    click_link "Sign in"
     page.should have_selector 'title', text: full_title('Sign Up')
     click_link "SndStream"
     page.should have_selector 'title', text: full_title('')
