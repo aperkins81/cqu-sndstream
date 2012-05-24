@@ -24,6 +24,6 @@ production:
   reconnect: false
   database: SNDSTREAM_PROD
   pool: 5
-  username: root
+  username: andy
   password:
 
