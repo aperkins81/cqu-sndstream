@@ -30,7 +30,8 @@ describe "User pages" do
         fill_in "Confirmation", with: "somepass"
       end
       # this address found in spec/views/factories.rb
-        let(:user) { User.find_by_email('test@email.com') }
+       # let(:user) { User.find_by_email('test@email.com') }
+      let(:user) { FactoryGirl.create(:user) }
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
