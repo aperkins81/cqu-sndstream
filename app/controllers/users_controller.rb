@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:success] = "Welcome to SndStream!"
+      flash[:success] = "G'day there #{@user.name}, welcome to SndStream!"
       redirect_to @user
     else
       flash[:error] = "Could not create user, try again."
