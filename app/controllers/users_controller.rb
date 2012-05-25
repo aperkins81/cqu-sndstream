@@ -10,12 +10,16 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      flash[:success] = "Welcome to SndStream!"
       redirect_to @user
     else
+      flash[:error] = "Could not create user, try again."
       render 'new'
     end
     rescue ActiveRecord::StatementInvalid
     # Handle duplicate email addresses gracefully by redirecting.
-    redirect_to root_path
+    # TODO: Test flash message appears in this rare circumstance.
+    flash = { error: "Sorry, someone beat you to that email address - try another!" }
+    redirect_to signup
   end
 end
