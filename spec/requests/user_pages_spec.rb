@@ -20,36 +20,34 @@ describe "User pages" do
       it "should not create a user" do
         expect { click_button submit }.not_to change(User, :count)
       end
+      
+      describe "after submission" do
+        it { should have_selector('title', text: 'Sign Up')}
+        it { should have_selector('div', id: 'error_explanation') }
+      end
     end
     
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "Some One"
-        fill_in "Email",        with: "some@one.com"
-        fill_in "Password",     with: "somepass"
-        fill_in "Confirmation", with: "somepass"
-      end
-      # this address found in spec/views/factories.rb
-       # let(:user) { User.find_by_email('test@email.com') }
-      let(:user) { FactoryGirl.create(:user) }
-      it "should create a user" do
-        expect { click_button submit }.to change(User, :count).by(1)
+        #visit signup_path
+        fill_in "Name",         with: "Test User"
+        fill_in "Email",        with: "test@email.com"
+        fill_in "Password",     with: "foobar"
+        fill_in "Confirmation", with: "foobar"
+        expect do
+          click_button submit 
+        end.to change(User, :count).by(1)
       end
       
       describe "after saving the user" do
-        before { click_button submit }
-        
         # this address found in spec/views/factories.rb
         let(:user) { User.find_by_email('test@email.com') }
+        
         it { should have_selector('title', text: user.name) }
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_selector('div.alert.alert-success', text: "G'day there") }
       end
       
-      describe "after submission" do
-        before {click_button submit }
-        it { should have_selector('title', text: 'Sign up')}
-        it { should have_content('error') }
-      end
+
     end
     
   end
