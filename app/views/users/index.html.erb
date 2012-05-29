@@ -3,9 +3,16 @@
 
 <%= will_paginate %>
 
-<ul class="users">
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <% @headings.each do |h| %>
+        <th><%= h %></th>
+      <% end %>
+    </tr>
+  </thead>
   <%= render @users %>
-</ul>
+</table>
 
 <%= will_paginate %>
 

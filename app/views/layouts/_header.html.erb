@@ -1,11 +1,17 @@
     <header class="navbar navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <%= link_to "SndStream", root_path, id: "logo" %>
           <nav>
             <ul class="nav pull-right">
               <li><%= link_to "Home",    root_path %></li>
               <li><%= link_to "Help",    help_path %></li>
+              <!--
+              <% if mobile_device? %>
+                <li><%= link_to "Full Site", :mobile => 0 %></li>
+              <% else %>
+                <li><%= link_to "Mobile Site", :mobile => 1 %></li>
+              <% end %> -->
               <% if signed_in? %>
                 <li><%= link_to "Users", users_path %></li>
                 <li id="fat-menu" class="dropdown">

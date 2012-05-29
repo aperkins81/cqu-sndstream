@@ -2,7 +2,7 @@
 <h1>Update your profile</h1>
 
 <div class="row">
-  <div class="span6 offset3">
+  <div class="container-fluid">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
       
@@ -17,10 +17,11 @@
       
       <%= f.label :password_confirmation, "Confirm Password" %>
       <%= f.password_field :password_confirmation %>
-      
+
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
       
     <% end %>
+    <%= render 'admin' %>
     
     <%= gravatar_for @user %>
     <a href="http://gravatar.com/emails">Change</a> profile picture.

@@ -5,6 +5,18 @@ class UsersController < ApplicationController
   
   def index
     @users = User.paginate(page: params[:page])
+    # TODO: Find better way of doing this:
+    @headings = [ "", "Name", "Join Date" ]
+    admin_headings = [ "Delete?" ]
+    if current_user.admin?
+      admin_headings.each do |ah|
+        @headings.push ah
+      end
+    end
+#    respond_to do |format|
+#      format.html
+#      format.mobile
+#    end
   end
   
   def new

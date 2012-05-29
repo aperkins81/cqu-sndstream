@@ -2,20 +2,25 @@
 <html>
 <head>
   <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= stylesheet_link_tag "mobile" if mobile_device? %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
-  </head>
-  <body>
-    <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-      <% end %>
-      <%= yield %>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
-    </div>
-  </body>
+  <mata name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <%= render 'layouts/header' %>
+  <div class="container-fluid">
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+    <% end %>
+    <%= debug(params) if Rails.env.development? %>
+    
+    <%= yield %>
+    
+    <%= render 'layouts/footer' %>
+    
+  </div>
+</body>
 </html>
