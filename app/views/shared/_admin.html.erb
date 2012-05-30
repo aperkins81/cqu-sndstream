@@ -1,3 +1,4 @@
     <%  if @user.admin? %>
-      <%= content_tag :p, "✓ Admin" %>
+      <% content_tag :p, "" %>
+         ✓ Admin: you may <%= link_to "delete users", users_path %> if feeling destructive.
     <% end %>

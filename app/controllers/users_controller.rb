@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
     @users = User.paginate(page: params[:page])
     # TODO: Find better way of doing this:
-    @headings = [ "", "Name", "Join Date" ]
+    @headings = [ "Name", "Join Date" ]
     admin_headings = [ "Delete?" ]
     if current_user.admin?
       admin_headings.each do |ah|
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     rescue ActiveRecord::StatementInvalid
     # Handle duplicate email addresses gracefully by redirecting.
     # TODO: Test flash message appears in this rare circumstance.
-    flash = { error: "Sorry, that email address is already in use - try another!" }
+    flash[:error] = "Sorry, that email address is already in use - try another!"
     redirect_to signup
   end
   

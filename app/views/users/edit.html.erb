@@ -19,10 +19,10 @@
       <%= f.password_field :password_confirmation %>
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      <%= render 'shared/admin' %>
       
     <% end %>
-    <%= render 'admin' %>
-    
+     
     <%= gravatar_for @user %>
     <a href="http://gravatar.com/emails">Change</a> profile picture.
   </div>
