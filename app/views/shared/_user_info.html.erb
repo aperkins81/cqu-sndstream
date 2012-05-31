@@ -1,0 +1,12 @@
+<a href="<%= user_path(current_user) %>">
+  <%= render 'shared/gravatar' %>
+</a>
+<h1>
+  <%= current_user.name %>
+</h1>
+<span>
+  <%= link_to "Profile", current_user %>
+</span>
+<span>
+  <%= pluralize(current_user.soundposts.count, "soundpost") %>
+</span>
