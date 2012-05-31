@@ -55,6 +55,17 @@ describe "Authentication" do
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       
+      describe "in the Soundposts controller" do
+        describe "submitting to the create action" do
+          before { post soundposts_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+        describe "submitting to the destroy action" do
+          before { delete soundpost_path(FactoryGirl.create(:soundpost)) }
+          specify { response.should redirect_to(signin_path) }
+        end
+      end
+      
       describe "in the Users controller" do
         
         describe "visiting the user index" do

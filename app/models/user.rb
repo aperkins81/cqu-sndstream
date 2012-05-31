@@ -11,6 +11,7 @@
 
 class User < ActiveRecord::Base
   attr_accessible  :name, :email, :password, :password_confirmation
+  has_many :soundposts, dependent: :destroy
   has_secure_password
   
   before_save { self.email.downcase! }
@@ -22,6 +23,14 @@ class User < ActiveRecord::Base
       uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+  
+  @gravatar = true # TODO: make this a menu option, store pref in db.
+    
+  
+  def feed
+    # TODO: modify for "Following users"
+    Soundpost.where("user_id = ?", id)
+  end
   
   private
     

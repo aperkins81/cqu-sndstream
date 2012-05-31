@@ -26,6 +26,8 @@ describe User do
   it { should respond_to :remember_token }
   it { should respond_to :admin }
   it { should respond_to :authenticate }
+  it { should respond_to :soundposts }
+  it { should respond_to :feed }
   it { should be_valid }
   it { should_not be_admin }
   
@@ -121,5 +123,37 @@ describe User do
   describe "with a password that is too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
+  end
+  
+  describe "soundpost associations" do
+    before { @user.save }
+    let!(:older_soundpost) do
+      FactoryGirl.create(:soundpost, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_soundpost) do
+      FactoryGirl.create(:soundpost, user: @user, created_at: 1.hour.ago)
+    end
+    
+    it "should have the right soundposts in the right order" do
+      @user.soundposts.should == [newer_soundpost, older_soundpost]
+    end
+    
+    it "should destroy associated soundposts" do
+      soundposts = @user.soundposts
+      @user.destroy
+      soundposts.each do |soundpost|
+        Soundpost.find_by_id(soundpost.id).should be_nil
+      end
+    end
+    
+    describe "status" do
+      let(:unfollowed_post) do
+        FactoryGirl.create(:soundpost, user: FactoryGirl.create(:user))
+      end
+      
+      its(:feed) { should include(newer_soundpost) }
+      its(:feed) { should include(older_soundpost) }
+      its(:feed) { should_not include(unfollowed_post) }
+    end
   end
 end

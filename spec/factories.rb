@@ -9,4 +9,9 @@ FactoryGirl.define do
       admin true
     end
   end
+  
+  factory :soundpost do
+    content "Binary Data 00110101010101000000"
+    user
+  end
 end

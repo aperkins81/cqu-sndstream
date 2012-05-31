@@ -9,4 +9,13 @@
       <%= render 'shared/admin' %>
     </section>
   </aside>
+  <div class="container-fluid">
+    <% if @user.soundposts.any? %>
+      <h3>Soundposts (<%= @user.soundposts.count %>)</h3>
+      <ol class=:soundposts">
+        <%= render @soundposts %>
+      </ol>
+      <%= will_paginate @soundposts %>
+    <% end %>
+  </div>
 </div>

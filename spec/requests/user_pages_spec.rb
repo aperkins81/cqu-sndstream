@@ -6,10 +6,18 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:s1) { FactoryGirl.create(:soundpost, user: user, content: "0011") }
+    let!(:s2) { FactoryGirl.create(:soundpost, user: user, content: "0101") }
     before { visit user_path(user) }
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
+    
+    describe "soundposts" do
+      it { should have_content(s1.content) }
+      it { should have_content(s2.content) }
+      it { should have_content(user.soundposts.count) }
+    end
   end
 
 ##############################################################################

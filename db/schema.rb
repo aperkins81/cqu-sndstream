@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120527082855) do
+ActiveRecord::Schema.define(:version => 20120530072429) do
+
+  create_table "soundposts", :force => true do |t|
+    t.binary   "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "soundposts", ["user_id", "created_at"], :name => "index_soundposts_on_user_id_and_created_at"
 
   create_table "users", :force => true do |t|
     t.string   "name"
