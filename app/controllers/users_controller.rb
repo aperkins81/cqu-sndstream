@@ -40,7 +40,6 @@ class UsersController < ApplicationController
     end
     rescue ActiveRecord::StatementInvalid
     # Handle duplicate email addresses gracefully by redirecting.
-    # TODO: Test flash message appears in this rare circumstance.
     flash[:error] = "Sorry, that email address is already in use - try another!"
     redirect_to signup
   end
