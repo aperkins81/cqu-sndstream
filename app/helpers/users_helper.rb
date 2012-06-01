@@ -3,9 +3,9 @@ module UsersHelper
   # Display gravatar?
   # TODO: make this a menu option, store pref in db.
   def display_gravatar?
-    # uncomment first comment to never display Gravatar
-    # uncomment all comments to always display Gravatar
-    Rails.env.production? # && false # || true
+    #Rails.env.production?
+    #false
+    true
   end
   
   # Returns the Gravatar (http://gravatar.com/) for the given user.

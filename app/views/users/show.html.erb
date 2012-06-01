@@ -8,11 +8,15 @@
       </h1>
       <%= render 'shared/admin' %>
     </section>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
   </aside>
   <div class="container-fluid">
+    <%= render 'follow_form' if signed_in? %>
     <% if @user.soundposts.any? %>
       <h3>Soundposts (<%= @user.soundposts.count %>)</h3>
-      <ol class=:soundposts">
+      <ol class="soundposts">
         <%= render @soundposts %>
       </ol>
       <%= will_paginate @soundposts %>
