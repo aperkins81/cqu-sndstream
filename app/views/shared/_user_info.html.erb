@@ -1,5 +1,5 @@
 <a href="<%= user_path(current_user) %>">
-  <%= render 'shared/gravatar' %>
+  <%= gravatar_for current_user, size: 110 %>
 </a>
 <h1>
   <%= current_user.name %>

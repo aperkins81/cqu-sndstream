@@ -3,7 +3,7 @@
   <aside class="container-fluid">
     <section>
       <h1>
-        <%= gravatar_for @user %>
+        <%= gravatar_for @user, size: 120 %>
         <%= @user.name %>
       </h1>
       <%= render 'shared/admin' %>

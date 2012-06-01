@@ -5,13 +5,25 @@ describe "Soundpost pages" do
   let(:user) { FactoryGirl.create(:user) }
   before { sign_in user }
   
-  describe "micropost creation" do
+  describe "soundpost deletion" do
+    before { FactoryGirl.create(:soundpost, user: user) }
+    
+    describe "as correct user" do
+      before { visit root_path }
+      
+      it "should delete a soundpost" do
+        expect { click_link "delete" }.should change(Soundpost, :count).by(-1)
+      end
+    end
+  end
+  
+  describe "soundpost creation" do
     before { visit root_path }
     
     describe "with invalid information" do
-#      it "should not create a soundpost" do
-#        expect { click_button "Post" }.should_not change(Soundpost, :count)
-#      end
+      it "should not create a soundpost" do
+        expect { click_button "Post" }.should_not change(Soundpost, :count)
+      end
     
       describe "error messages" do
         before { click_button "Post" }

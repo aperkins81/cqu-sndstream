@@ -1,5 +1,5 @@
 <li id="<%= feed_item.id %>">
-  <%= render 'shared/gravatar' %>
+  <%= gravatar_for feed_item.user, size: 52 %>
   <span class="user">
     <%= link_to feed_item.user.name, feed_item.user %>
   </span>
@@ -7,4 +7,6 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words feed_item.created_at %> ago.
   </span>
+  <%= render :partial => 'shared/delete_item', 
+      :locals => {:sndpost => feed_item } %>
 </li>

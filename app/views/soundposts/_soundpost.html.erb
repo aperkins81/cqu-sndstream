@@ -3,4 +3,6 @@
     <span class="timestamp">
       Posted <%= time_ago_in_words(soundpost.created_at) %> ago.
     </span>
+    <%= render :partial => 'shared/delete_item', 
+        :locals => {:sndpost => soundpost } %>
   </li>

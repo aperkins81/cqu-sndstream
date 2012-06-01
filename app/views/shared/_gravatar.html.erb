@@ -1,5 +1,5 @@
-<% if true %>
-    <%= gravatar_for current_user, size: 52 %>
-<% else %>
+  <% if gravatar? %>
+    <%= gravatar_for current_user, size: grav_size %>
+  <% else %>
 
-<% end %>
+  <% end %>
