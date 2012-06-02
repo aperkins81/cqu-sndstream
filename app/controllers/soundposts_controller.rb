@@ -23,7 +23,8 @@ class SoundpostsController < ApplicationController
   end
   
   def show
-    @soundpost = current_user.soundposts.find_by_id(params[:id])
+    #@soundpost = current_user.soundposts.find_by_id(params[:id])
+    @soundpost = Soundpost.find(params[:id])
     send_data @soundpost.content, 
         :filename => "snd-#{@soundpost.id}#{@soundpost.ext}",
         :type => @soundpost.filetype, :disposition => 'inline'
