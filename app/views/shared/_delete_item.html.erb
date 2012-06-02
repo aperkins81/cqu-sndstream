@@ -1,8 +1,0 @@
-<% if current_user?(sndpost.user) %>  
-  <%= link_to raw('<i class="icon-trash icon-white"></i> delete'), sndpost,
-      method: :delete,
-      confirm: "Delete post?",
-      title: sndpost.content,
-      class: "btn btn-small btn-danger"
-  %>
-<% end %>

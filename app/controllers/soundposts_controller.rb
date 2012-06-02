@@ -4,6 +4,10 @@ class SoundpostsController < ApplicationController
   
   def create
     @soundpost = current_user.soundposts.build(params[:soundpost])
+    sound = params[:soundpost][:content]
+    @soundpost.content = sound.read
+    @soundpost.filetype = sound.content_type
+    @soundpost.ext = File.extname(sound.original_filename)
     if @soundpost.save
       flash[:success] = "SndStream created!"
       redirect_to root_path
@@ -16,6 +20,13 @@ class SoundpostsController < ApplicationController
   def destroy
     @soundpost.destroy
     redirect_to root_path
+  end
+  
+  def show
+    @soundpost = current_user.soundposts.find_by_id(params[:id])
+    send_data @soundpost.content, 
+        :filename => "snd-#{@soundpost.id}#{@soundpost.ext}",
+        :type => @soundpost.filetype, :disposition => 'inline'
   end
   
   

@@ -1,7 +1,9 @@
 class Soundpost < ActiveRecord::Base
-  attr_accessible :content
+  attr_accessible :content, :filetype, :ext
   validates :user_id, presence: true
   validates :content, presence: true
+  validates_size_of :content, :maximum => 15.kilobytes,
+      :message => "Maximum file size is 15 kilobytes"
   belongs_to :user
   
   default_scope order: 'soundposts.created_at DESC'

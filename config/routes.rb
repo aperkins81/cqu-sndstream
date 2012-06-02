@@ -2,7 +2,7 @@ Sndstream::Application.routes.draw do
   root              to: 'static_pages#home'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :soundposts, only: [:create, :destroy]
+  resources :soundposts, only: [:create, :destroy, :show]
   resources :relationships, only: [:create, :destroy]
   resources :users do
     member do

@@ -1,0 +1,16 @@
+  <span class="content">
+    <%= link_to 'play', sndstream %> (<%= sndstream.filetype %>)
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words sndstream.created_at %> ago.
+  </span>
+  <span>
+  <% if current_user?(sndstream.user) %>  
+    <%= link_to raw('<i class="icon-trash icon-white"></i> delete'), sndstream,
+        method: :delete,
+        confirm: "Delete post?",
+        title: "id: #{sndstream.id}",
+        class: "btn btn-small btn-danger"
+    %>
+  <% end %>
+  </span>
