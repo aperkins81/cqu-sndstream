@@ -6,8 +6,8 @@ class SoundpostsController < ApplicationController
     @soundpost = current_user.soundposts.build(params[:soundpost])
     sound = @soundpost.content
     # verify conent_type (e.g., 'audio/mpeg') starts with 'audio/' or 'video/'...
-    valid = sound.content_type.starts_with? 'audio/' or 
-        sound.content_type.starts_with? 'video/' # ogg vorbis
+    valid = (sound.content_type.starts_with? 'audio/') || 
+        (sound.content_type.starts_with? 'video/') # ogg vorbis
     @soundpost.filetype = sound.content_type
     @soundpost.content = sound.read
     @soundpost.ext = File.extname(sound.original_filename)
