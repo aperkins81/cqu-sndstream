@@ -1,7 +1,69 @@
 <%= form_for(@soundpost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.file_field :content %>
+    <% if mobile_device? %>
+      Record audio...
+      <%= tag "input", {"type" => "button", 
+          "value" => "Record", "onclick" => "captureAudio();" } %> 
+    <% else %>
+    
+    <!-- 
+      Extremely limited browser support:
+      
+      <input type="file" accept="audio/*;capture=microphone"> 
+      
+      Info:
+      - http://www.html5rocks.com/en/tutorials/getusermedia/intro/
+      - http://www.w3.org/TR/html-media-capture
+    
+    -->
+    
+    
+    <% end %>
+    <%= f.label :content, "Upload a file (file size limit is 50 Kb)" %>
+    <%= f.file_field :content, class: "input-file btn btn-medium" %>
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-success" %>
+    
+    <!-- table src:  http://www.w3schools.com/html5/html5_audio.asp -->
+<br />Playing sounds will work in the following browser/format combinations:
+<table class="table table-striped">
+<tbody><tr>
+<th width="20%" align="left">Browser</th>
+<th width="16%" align="left">MP3</th>
+<th width="16%" align="left">Wav</th>
+<th width="16%" align="left">Ogg</th>
+</tr>
+<tr>
+<td>Internet Explorer 9</td>
+<td>✓</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Firefox 4.0</td>
+<td></td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Google Chrome 6</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Apple Safari 5</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td>Opera 10.6</td>
+<td></td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+</tbody></table> 
+
 <% end %>

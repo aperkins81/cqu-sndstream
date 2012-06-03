@@ -1,5 +1,18 @@
   <span class="content">
-    <%= link_to 'play', sndstream %> (<%= sndstream.filetype %>)
+    <% unless sndstream.filetype.nil? %>
+    <%= link_to 'download', sndstream %> (<%= sndstream.filetype %>)
+    <!-- Only some codes work in some browsers... -->
+    <audio controls="controls">
+      <source src="<%= soundpost_path(sndstream.id) %>" 
+          type="<%= sndstream.filetype %>" />
+    </audio>
+    <% else %>
+      No filetype associated with this sndstream!
+    <% end %>
+
+  <%#  Not practical to load a jplayer for every post - need unique identifiers.
+  <%= render 'shared/jplayer' %>
+
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words sndstream.created_at %> ago.
