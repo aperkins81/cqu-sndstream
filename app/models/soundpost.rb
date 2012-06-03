@@ -1,5 +1,6 @@
 class Soundpost < ActiveRecord::Base
-  attr_accessible :content, :filetype, :ext
+
+  attr_accessible :content, :filetype, :ext, :MAX_FILESIZE_KB
   validates :user_id, presence: true
   validates :content, presence: true
   validates_size_of :content, :maximum => 50.kilobytes,

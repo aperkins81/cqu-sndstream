@@ -1,6 +1,8 @@
   <span class="content">
     <% unless sndstream.filetype.nil? %>
-    <%= link_to 'download', sndstream %> (<%= sndstream.filetype %>)
+    <%= link_to 'download', sndstream, :title => 
+    "You may have to right click then 'Save Link As ...' for downloads to work." %> 
+    (<%= sndstream.filetype %>)
     <!-- Only some codes work in some browsers... -->
     <audio controls="controls">
       <source src="<%= soundpost_path(sndstream.id) %>" 
