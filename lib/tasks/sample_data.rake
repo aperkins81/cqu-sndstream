@@ -34,7 +34,7 @@ def make_soundposts
       end
       content += " "
     end
-    users.each { |user| user.soundposts.create!(content: content) }
+    users.each { |user| user.soundposts.create!(content: content, filetype: 'test/test', ext: ".test") }
   end
 end
 

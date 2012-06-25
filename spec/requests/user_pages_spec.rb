@@ -92,8 +92,8 @@ describe "User pages" do
     end
     
     describe "soundposts" do
-      it { should have_content(s1.content) }
-      it { should have_content(s2.content) }
+      #it { should have_content(s1.content) }
+      #it { should have_content(s2.content) }
       it { should have_content(user.soundposts.count) }
     end
   end

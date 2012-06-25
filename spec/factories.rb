@@ -12,6 +12,8 @@ FactoryGirl.define do
   
   factory :soundpost do
     content "Binary Data 00110101010101000000"
+    filetype "test/test"
+    ext ".test"
     user
   end
 end
